@@ -22,5 +22,16 @@ namespace FieldOps.Api.Repositories
 
             return workOrders;
         }
+
+        public async Task<IEnumerable<WorkOrder>> GetByCustomerIdAsync(int customerId)
+        {
+            const string sql = @"SELECT WorkOrderId, CustomerId, Title, Status, CreatedDate from dbo.WorkOrders WHERE CustomerId = @CustomerId;";
+
+            using var connection = _connectionFactory.CreateConnection();
+
+            var workOrders = await connection.QueryAsync<WorkOrder>(sql, new { CustomerId = customerId });
+
+            return workOrders;
+        }
     }
 }

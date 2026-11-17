@@ -15,5 +15,10 @@ namespace FieldOps.Api.Services
         {
             return await _repository.GetAllAsync();
         }
+
+        public async Task<IEnumerable<WorkOrder>> GetByCustomerIdAsync(int customerId)
+        {
+            return await _repository.GetByCustomerIdAsync(customerId);
+        }
     }
 }

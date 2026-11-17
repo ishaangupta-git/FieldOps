@@ -20,5 +20,12 @@ namespace FieldOps.Api.Controllers
             // Implementation for retrieving work orders
             return Ok(workOrders);
         }
+
+        [HttpGet("{customerId:int}")]
+        public async Task<IActionResult> GetByCustomerIdAsync(int customerId) 
+        {
+            var workOrders =  await _workOrderService.GetByCustomerIdAsync(customerId);
+            return Ok(workOrders);
+        }
     }
 }
